@@ -1,0 +1,10 @@
+serviceName: {{ cookiecutter.service_name }}
+port: 8080
+logging:
+  type: unstructured # /structured
+metrics:
+  type: none # /log/influxdb
+  config:
+    prefix: {{ cookiecutter.service_name }}
+custom:
+  withName: true

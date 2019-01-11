@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+// Optional, urls will be /twirp/packageName.Service/Function
+// Otherwise urls will be /twirp/Service/Function
+// package packageName;
+option go_package = "proto";
+
+// A response from the Greeter service SayHello
+message HelloResponse {
+  // The message the greeter responds with when asked to say hello
+  string message = 1;
+}
+
+// A request for a Hello to the Greeter service
+message HelloRequest {
+  // Contains the name of the person
+  string name = 1;
+}
+
+// A Greeter says hello to people
+service Greeter {
+  // SayHello generates a hello message for a given person
+  rpc SayHello(HelloRequest) returns (HelloResponse);
+}

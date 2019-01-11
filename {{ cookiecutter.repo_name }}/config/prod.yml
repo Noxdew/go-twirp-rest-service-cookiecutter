@@ -1,0 +1,14 @@
+serviceName: {{ cookiecutter.service_name }}
+port: 8080
+logging:
+  type: structured
+metrics:
+  type: influxdb
+  config:
+    # url: https://influx.url.com
+    # username: username
+    # password: ???
+    # database: ???
+    prefix: {{ cookiecutter.service_name }}
+custom:
+  withName: true

@@ -1,0 +1,6 @@
+{
+    "service_name": "service_name",
+    "repo_owner": "your_git_username",
+    "repo_name": "repo_name",
+    "repo_host": "github.com"
+}

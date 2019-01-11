@@ -1,0 +1,9 @@
+version: '3.6'
+services:
+  {{ cookiecutter.service_name }}:
+    build: .
+    container_name: {{ cookiecutter.service_name }}
+    ports:
+      - 8080:8080
+    environment:
+      - ENV=dev

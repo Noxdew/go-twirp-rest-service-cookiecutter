@@ -1,0 +1,13 @@
+package: proto
+service: Greeter
+# serviceName: CustomGreeterName
+routes:
+  - method:
+      - GET
+      - POST
+    path: /hello/{name}
+    function: SayHello
+  # - method: GET
+  #   path: /foo
+  #   service: Foo
+  #   function: MakeFoo

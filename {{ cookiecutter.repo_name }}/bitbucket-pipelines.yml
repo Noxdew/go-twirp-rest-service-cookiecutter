@@ -1,0 +1,24 @@
+image: golang:latest
+
+pipelines:
+  default:
+    - step:
+        script:
+          - apt-get update && apt-get -y install protobuf-compiler
+          - go get github.com/twitchtv/twirp/protoc-gen-twirp
+          - go get bitbucket.org/noxdew/twirp-rest-gen
+
+          # protoc-gen-go has to be the same version as proto package
+          - WORKDIR=$(pwd)
+          - git clone https://github.com/golang/protobuf.git "${GOPATH}/src/github.com/golang/protobuf"
+          - cd "${GOPATH}"/src/github.com/golang/protobuf
+          - git checkout v1.2.0
+          - go install github.com/golang/protobuf/protoc-gen-go
+          - cd ${WORKDIR}
+
+          - PACKAGE_PATH="${GOPATH}/src/bitbucket.org/${BITBUCKET_REPO_OWNER}/${BITBUCKET_REPO_SLUG}"
+          - mkdir -pv "${PACKAGE_PATH}"
+          - tar -cO --exclude-vcs --exclude=bitbucket-pipelines.yml . | tar -xv -C "${PACKAGE_PATH}"
+          - cd "${PACKAGE_PATH}"
+          - make setup-test
+          - make test
