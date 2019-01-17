@@ -19,7 +19,7 @@ import (
 
 func main() {
 	customConfig := impl.ServiceConfig{}
-	config := configLoader.Load(customConfig)
+	config := configLoader.Load(&customConfig)
 	logger := config.Logging.Create()
 	defer logger.Sync()
 	config.Metrics.Configure(logger)
