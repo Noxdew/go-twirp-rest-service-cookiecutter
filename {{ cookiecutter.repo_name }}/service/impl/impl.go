@@ -18,7 +18,15 @@ type ServiceConfig struct {
 // Service struct containing the business logic
 type Service struct {
 	Logger *zap.Logger
-	Config ServiceConfig
+	Config *ServiceConfig
+}
+
+// CreateService creates an instance of the service
+func CreateService(logger *zap.Logger, serviceConfig *ServiceConfig) *Service {
+	return &Service{
+		Logger: logger,
+		Config: serviceConfig,
+	}
 }
 
 // SayHello example function

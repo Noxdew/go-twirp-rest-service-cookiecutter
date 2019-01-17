@@ -33,10 +33,7 @@ func main() {
 	router.HandleFunc("/health/live", health.LiveEndpoint)
 
 	hook := twirpStatsd.NewStatsdServerHooks(statter.MetricsStatter{})
-	service := &impl.Service{
-		Logger: logger,
-		Config: customConfig,
-	}
+	service := impl.CreateService(logger, &customConfig)
 	twirpServer := proto.NewGreeterServer(service, hook)
 	twirpRestServer := proto.NewTwirpRestServer(twirpServer, router)
 
