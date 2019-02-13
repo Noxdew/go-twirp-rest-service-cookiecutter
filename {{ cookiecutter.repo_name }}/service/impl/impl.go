@@ -9,10 +9,10 @@ import (
 )
 
 // ServiceConfig struct containing the custom config for this service
-// it will be parsed from the custom top level key in the config.yaml
+// it will be parsed from the custom top level key in the config
 type ServiceConfig struct {
-	WithName  bool   `yaml:"withName" json:"withName"`
-	ClientURL string `yaml:"clientUrl" json:"clientUrl"`
+	WithName  bool   `mapstructure:"withName"`
+	ClientURL string `mapstructure:"clientUrl"`
 }
 
 // Service struct containing the business logic
