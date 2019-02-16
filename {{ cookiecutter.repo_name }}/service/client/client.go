@@ -34,6 +34,7 @@ func (sc *ServiceClient) GetHello(name string) (res *proto.HelloResponse, err er
 		if err != nil {
 			if twerr, ok := err.(twirp.Error); ok {
 				if twerr.Meta("retryable") != "" {
+					// Log the error and go again.
 					sc.Logger.Warn("Failed to call client",
 						zap.String("client", "Greeter"),
 						zap.String("function", "SayHello"),
@@ -41,8 +42,6 @@ func (sc *ServiceClient) GetHello(name string) (res *proto.HelloResponse, err er
 						zap.Bool("retryable", true),
 						zap.Error(err),
 					)
-					// Log the error and go again.
-					log.Printf("got error %q, retrying", twerr)
 					continue
 				}
 			}
@@ -55,6 +54,7 @@ func (sc *ServiceClient) GetHello(name string) (res *proto.HelloResponse, err er
 			)
 			return nil, err
 		}
+		break
 	}
 	return res, nil
 }
