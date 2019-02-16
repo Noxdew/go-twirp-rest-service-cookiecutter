@@ -4,7 +4,7 @@ pipelines:
   default:
     - step:
         script:
-          - apt-get update && apt-get -y install protobuf-compiler
+          - apt-get update && apt-get -y install protobuf-compiler libprotoc-dev
           - go get github.com/twitchtv/twirp/protoc-gen-twirp
           - go get bitbucket.org/noxdew/twirp-rest-gen
 

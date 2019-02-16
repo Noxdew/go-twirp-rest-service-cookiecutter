@@ -2,7 +2,7 @@ FROM golang:latest as builder
 
 # Setup dependencies
 RUN apt-get update && \
-    apt-get -y install protobuf-compiler git
+    apt-get -y install protobuf-compiler libprotoc-dev git
 
 RUN go get github.com/twitchtv/twirp/protoc-gen-twirp
 RUN go get bitbucket.org/noxdew/twirp-rest-gen
